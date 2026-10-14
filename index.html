@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kervie Amado | Student & Aspiring Software Developer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#ecfeff',
+                            100: '#cffaff',
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                            900: '#164e63',
+                        },
+                        darkbg: '#0a0f1d',
+                        darkcard: 'rgba(15, 23, 42, 0.75)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-12px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #080c16;
+            color: #f1f5f9;
+        }
+
+        /* Custom Glassmorphism Styling */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card-hover:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color, rgba(6, 182, 212, 0.4));
+            box-shadow: 0 12px 30px -10px var(--accent-glow, rgba(6, 182, 212, 0.25));
+        }
+
+        .glass-nav {
+            background: rgba(8, 12, 22, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080c16;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #34d399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Accent Themes Variables */
+        :root {
+            --accent-color: rgba(6, 182, 212, 0.4);
+            --accent-glow: rgba(6, 182, 212, 0.25);
+            --accent-hex: #06b6d4;
+        }
+
+        .theme-emerald {
+            --accent-color: rgba(16, 185, 129, 0.4);
+            --accent-glow: rgba(16, 185, 129, 0.25);
+            --accent-hex: #10b981;
+        }
+
+        .theme-violet {
+            --accent-color: rgba(139, 92, 246, 0.4);
+            --accent-glow: rgba(139, 92, 246, 0.25);
+            --accent-hex: #8b5cf6;
+        }
+
+        .theme-amber {
+            --accent-color: rgba(245, 158, 11, 0.4);
+            --accent-glow: rgba(245, 158, 11, 0.25);
+            --accent-hex: #f59e0b;
+        }
+
+        /* Blinking Cursor for Typing Effect */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-[#080c16] text-slate-200 antialiased selection:bg-cyan-500 selection:text-white">
+
+    <!-- Ambient Background Glows -->
+    <div class="fixed top-0 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none z-0 animate-pulse-slow"></div>
+    <div class="fixed bottom-10 right-1/4 w-[30rem] h-[30rem] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none z-0"></div>
+    <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-indigo-500/5 rounded-full blur-[160px] pointer-events-none z-0"></div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="glass-card border-cyan-500/30 px-5 py-3 rounded-xl flex items-center space-x-3 shadow-2xl">
+            <i id="toast-icon" class="fas me-2 text-cyan-400 text-lg"></i>
+            <span id="toast-message" class="text-sm font-medium text-slate-200">Notification message</span>
+        </div>
+    </div>
+
+    <!-- Sticky Navigation Bar -->
+    <header class="sticky top-0 z-40 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-emerald-400 flex items-center justify-center text-slate-950 font-bold text-xl shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                        KA
+                    </div>
+                    <div>
+                        <span class="text-lg font-bold tracking-tight text-white group-hover:text-cyan-400 transition-colors">Kervie Amado</span>
+                        <span class="block text-[10px] text-slate-400 font-mono tracking-wider">ICCT COLLEGES</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                    <a href="#home" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/40 rounded-lg transition-all">Home</a>
+                    <a href="#about" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/40 rounded-lg transition-all">About</a>
+                    <a href="#skills" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/40 rounded-lg transition-all">Skills</a>
+                    <a href="#github" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/40 rounded-lg transition-all">GitHub API</a>
+                    <a href="#projects" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/40 rounded-lg transition-all">Projects</a>
+                    <a href="#contact" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/40 rounded-lg transition-all">Contact</a>
+                </nav>
+
+                <!-- Color Accent Controls & CTA -->
+                <div class="hidden sm:flex items-center space-x-3">
+                    <div class="flex items-center bg-slate-900/80 p-1.5 rounded-full border border-slate-800 space-x-1.5">
+                        <button onclick="setTheme('cyan')" class="w-4 h-4 rounded-full bg-cyan-400 focus:outline-none hover:scale-125 transition-transform" title="Cyan Accent"></button>
+                        <button onclick="setTheme('emerald')" class="w-4 h-4 rounded-full bg-emerald-400 focus:outline-none hover:scale-125 transition-transform" title="Emerald Accent"></button>
+                        <button onclick="setTheme('violet')" class="w-4 h-4 rounded-full bg-violet-400 focus:outline-none hover:scale-125 transition-transform" title="Violet Accent"></button>
+                        <button onclick="setTheme('amber')" class="w-4 h-4 rounded-full bg-amber-400 focus:outline-none hover:scale-125 transition-transform" title="Amber Accent"></button>
+                    </div>
+
+                    <a href="#contact" class="px-4 py-2 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 text-xs font-semibold hover:bg-cyan-500 hover:text-slate-950 transition-all shadow-lg shadow-cyan-500/10 flex items-center space-x-2">
+                        <i class="fas font-thin fa-paper-plane"></i>
+                        <span>Hire / Connect</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-400 hover:text-white p-2 focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card border-t border-slate-800 px-4 pt-2 pb-6 space-y-2">
+            <a href="#home" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50">Home</a>
+            <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50">About</a>
+            <a href="#skills" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50">Skills</a>
+            <a href="#github" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50">GitHub Live</a>
+            <a href="#projects" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50">Projects</a>
+            <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50">Contact</a>
+            
+            <div class="pt-2 flex justify-between items-center border-t border-slate-800/60">
+                <span class="text-xs text-slate-400">Accent Theme:</span>
+                <div class="flex items-center space-x-2">
+                    <button onclick="setTheme('cyan')" class="w-5 h-5 rounded-full bg-cyan-400"></button>
+                    <button onclick="setTheme('emerald')" class="w-5 h-5 rounded-full bg-emerald-400"></button>
+                    <button onclick="setTheme('violet')" class="w-5 h-5 rounded-full bg-violet-400"></button>
+                    <button onclick="setTheme('amber')" class="w-5 h-5 rounded-full bg-amber-400"></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 py-10">
+
+        <!-- HERO SECTION -->
+        <section id="home" class="min-h-[80vh] flex flex-col justify-center items-center text-center pt-8 pb-16">
+            <!-- Location & Status Badge -->
+            <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass-card border border-cyan-500/20 mb-8 animate-bounce">
+                <span class="relative flex h-2.5 w-2.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                </span>
+                <span class="text-xs font-semibold text-slate-300 tracking-wide">
+                    📍 Taytay, Rizal, Philippines &bull; Student @ ICCT Colleges
+                </span>
+            </div>
+
+            <!-- Profile Avatar / Hero Visual -->
+            <div class="relative mb-8 group">
+                <div class="w-32 h-32 sm:w-40 sm:h-40 rounded-full p-1 bg-gradient-to-tr from-cyan-500 via-emerald-400 to-indigo-500 shadow-2xl shadow-cyan-500/20 group-hover:scale-105 transition-all duration-300">
+                    <div class="w-full h-full rounded-full bg-slate-900 overflow-hidden flex items-center justify-center relative">
+                        <img id="hero-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80" 
+                             alt="Kervie Amado Profile" 
+                             class="w-full h-full object-cover"
+                             onerror="this.src='https://placehold.co/400x400/0f172a/22d3ee?text=KA'">
+                    </div>
+                </div>
+                <div class="absolute -bottom-2 -right-2 bg-slate-900 text-cyan-400 border border-slate-700 p-2.5 rounded-full shadow-lg">
+                    <i class="fas fa-code text-sm"></i>
+                </div>
+            </div>
+
+            <!-- Name Headline -->
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-4">
+                Hi, I'm <span class="gradient-text">Kervie Amado</span>
+            </h1>
+
+            <!-- Animated Dynamic Role Subtitle -->
+            <div class="text-xl sm:text-2xl text-slate-400 font-medium h-10 mb-8 flex items-center justify-center">
+                <span id="typed-text" class="text-cyan-400 font-mono typing-cursor"></span>
+            </div>
+
+            <p class="max-w-2xl text-slate-400 text-sm sm:text-base leading-relaxed mb-10">
+                Passionate IT student at <span class="text-slate-200 font-semibold">ICCT Colleges</span>, dedicated to building responsive web applications, modern UI interfaces, and solving real-world technological challenges from <span class="text-slate-200 font-semibold">Taytay, Rizal</span>.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md">
+                <a href="#projects" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-bold hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 flex items-center justify-center space-x-2">
+                    <span>View Projects</span>
+                    <i class="fas fa-arrow-right text-xs"></i>
+                </a>
+                <a href="#github" class="w-full sm:w-auto px-8 py-3.5 rounded-xl glass-card hover:bg-slate-800/80 border border-slate-700 text-slate-200 font-semibold transition-all duration-300 flex items-center justify-center space-x-2">
+                    <i class="fab fa-github text-lg"></i>
+                    <span>GitHub Activity</span>
+                </a>
+                <a href="#contact" class="w-full sm:w-auto px-6 py-3.5 rounded-xl glass-card hover:bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold transition-all duration-300 flex items-center justify-center space-x-2">
+                    <i class="far fa-envelope text-lg"></i>
+                    <span>Contact</span>
+                </a>
+            </div>
+
+            <!-- Quick Stats Banner -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl mt-16 text-left">
+                <div class="glass-card p-5 rounded-2xl border border-slate-800">
+                    <div class="text-2xl sm:text-3xl font-extrabold text-cyan-400 font-mono mb-1">BS IT</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Student @ ICCT</div>
+                </div>
+                <div class="glass-card p-5 rounded-2xl border border-slate-800">
+                    <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-mono mb-1">Taytay</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Rizal, PH Base</div>
+                </div>
+                <div class="glass-card p-5 rounded-2xl border border-slate-800">
+                    <div class="text-2xl sm:text-3xl font-extrabold text-indigo-400 font-mono mb-1" id="stat-repos-count">12+</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Projects Built</div>
+                </div>
+                <div class="glass-card p-5 rounded-2xl border border-slate-800">
+                    <div class="text-2xl sm:text-3xl font-extrabold text-amber-400 font-mono mb-1">100%</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Dedication to Code</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-xs font-semibold text-cyan-400 uppercase tracking-widest mb-2 font-mono">// BACKGROUND & EDUCATION</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-white">About Kervie Amado</h3>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                <!-- Bio Card -->
+                <div class="lg:col-span-7 glass-card p-8 rounded-3xl border border-slate-800 flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3 text-cyan-400 mb-2">
+                            <i class="fas fa-graduation-cap text-xl"></i>
+                            <span class="font-semibold text-lg text-slate-200">Academic & Developer Journey</span>
+                        </div>
+                        <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                            I am <strong class="text-cyan-400">Kervie Amado</strong>, an ambitious Information Technology student currently pursuing my degree at <strong class="text-white">ICCT Colleges</strong>. Based in <strong class="text-white">Taytay, Rizal</strong>, I am deeply motivated by modern technology, full-stack web development, and creating clean, user-centric interfaces.
+                        </p>
+                        <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+                            My coursework and personal projects focus on mastering frontend frameworks, responsive UI architecture, database management, and version control. I strive to continuously learn modern development practices and build software that provides real value.
+                        </p>
+                    </div>
+
+                    <!-- Developer Philosophy -->
+                    <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 flex items-start space-x-4">
+                        <div class="text-emerald-400 text-2xl mt-1">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-300 italic">"Consistency in writing clean code and curiosity in exploring new technology stacks drive my growth every single day."</p>
+                            <span class="text-[11px] text-cyan-400 font-semibold block mt-1">— Kervie Amado's Dev Philosophy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Timeline Card -->
+                <div class="lg:col-span-5 glass-card p-8 rounded-3xl border border-slate-800 flex flex-col justify-between space-y-6">
+                    <div>
+                        <h4 class="text-lg font-bold text-white mb-6 flex items-center space-x-2">
+                            <i class="fas fa-university text-cyan-400"></i>
+                            <span>Education & Location</span>
+                        </h4>
+
+                        <div class="relative border-l-2 border-slate-800 pl-6 space-y-6">
+                            <!-- ICCT Colleges -->
+                            <div class="relative">
+                                <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-cyan-400 border-4 border-slate-950"></div>
+                                <span class="text-xs font-mono text-cyan-400 font-semibold">PRESENT / IN PROGRESS</span>
+                                <h5 class="text-base font-bold text-slate-100">BS in Information Technology</h5>
+                                <p class="text-xs text-slate-400 font-medium">ICCT Colleges (Taytay / Cainta Main Campus)</p>
+                                <p class="text-xs text-slate-400 mt-2">Focused on Software Engineering, Web Development, Database Systems, and Network Fundamentals.</p>
+                            </div>
+
+                            <!-- Senior High / Foundation -->
+                            <div class="relative">
+                                <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-slate-700 border-4 border-slate-950"></div>
+                                <span class="text-xs font-mono text-slate-400 font-semibold">COMPLETED</span>
+                                <h5 class="text-base font-bold text-slate-300">ICT Strand - Senior High</h5>
+                                <p class="text-xs text-slate-400 font-medium">Taytay, Rizal, Philippines</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                        <span class="flex items-center space-x-1">
+                            <i class="fas fa-map-marker-alt text-red-400 me-1"></i> Taytay, Rizal
+                        </span>
+                        <span class="flex items-center space-x-1">
+                            <i class="fas fa-check-circle text-emerald-400 me-1"></i> Open for Internships/Collab
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section id="skills" class="scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-xs font-semibold text-cyan-400 uppercase tracking-widest mb-2 font-mono">// TECHNICAL PROFICIENCY</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-white">Core Skills & Tools</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Frontend Skills -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 glass-card-hover">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-4">Frontend Development</h4>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="text-slate-300">HTML5 / CSS3</span>
+                                <span class="text-cyan-400 font-mono">92%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-cyan-500 to-emerald-400 rounded-full w-[92%]"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="text-slate-300">JavaScript (ES6+)</span>
+                                <span class="text-cyan-400 font-mono">85%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-cyan-500 to-emerald-400 rounded-full w-[85%]"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="text-slate-300">Tailwind CSS & Responsive UI</span>
+                                <span class="text-cyan-400 font-mono">88%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-cyan-500 to-emerald-400 rounded-full w-[88%]"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="text-slate-300">React.js Basics</span>
+                                <span class="text-cyan-400 font-mono">75%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-cyan-500 to-emerald-400 rounded-full w-[75%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backend & Database Skills -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 glass-card-hover">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-4">Backend & Databases</h4>
+
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="text-slate-300">Node.js / Express Basics</span>
+                                <span class="text-emerald-400 font-mono">72%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-emerald-500 to-cyan-400 rounded-full w-[72%]"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="text-slate-300">MySQL / Relational DBs</span>
+                                <span class="text-emerald-400 font-mono">80%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-emerald-500 to-cyan-400 rounded-full w-[80%]"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="text-slate-300">PHP & Web Fundamentals</span>
+                                <span class="text-emerald-400 font-mono">78%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-emerald-500 to-cyan-400 rounded-full w-[78%]"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="text-slate-300">REST API Integration</span>
+                                <span class="text-emerald-400 font-mono">82%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-emerald-500 to-cyan-400 rounded-full w-[82%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools & Methods -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 glass-card-hover">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-4">Tools & Workflow</h4>
+
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-300 flex items-center space-x-2">
+                            <i class="fab fa-git-alt text-orange-500"></i>
+                            <span>Git & Version Control</span>
+                        </span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-300 flex items-center space-x-2">
+                            <i class="fab fa-github text-white"></i>
+                            <span>GitHub Workflows</span>
+                        </span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-300 flex items-center space-x-2">
+                            <i class="fas fa-code text-blue-400"></i>
+                            <span>VS Code Environment</span>
+                        </span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-300 flex items-center space-x-2">
+                            <i class="fas fa-paper-plane text-amber-400"></i>
+                            <span>Postman API Testing</span>
+                        </span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-300 flex items-center space-x-2">
+                            <i class="fab fa-figma text-purple-400"></i>
+                            <span>Figma UI Design</span>
+                        </span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-300 flex items-center space-x-2">
+                            <i class="fas fa-terminal text-emerald-400"></i>
+                            <span>Terminal / Bash</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LIVE GITHUB SHOWCASE SECTION -->
+        <section id="github" class="scroll-mt-24">
+            <div class="text-center mb-10">
+                <h2 class="text-xs font-semibold text-cyan-400 uppercase tracking-widest mb-2 font-mono">// REAL-TIME API INTEGRATION</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-white">Live GitHub Activity & Repositories</h3>
+                <p class="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto mt-2">
+                    Enter any GitHub username below to dynamically fetch real-time profile data, public repositories, and stars via the official GitHub REST API.
+                </p>
+            </div>
+
+            <!-- GitHub Lookup Control Bar -->
+            <div class="glass-card p-4 sm:p-6 rounded-2xl border border-slate-800 max-w-2xl mx-auto mb-10">
+                <form id="github-form" class="flex flex-col sm:flex-row gap-3">
+                    <div class="relative flex-1">
+                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                            <i class="fab fa-github text-lg"></i>
+                        </div>
+                        <input type="text" id="github-username-input" 
+                               value="kervieamado" 
+                               placeholder="Type GitHub username (e.g. kervieamado)..." 
+                               class="w-full pl-10 pr-4 py-3 bg-slate-900/90 border border-slate-700 rounded-xl text-slate-200 placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 transition-colors font-mono">
+                    </div>
+                    <button type="submit" id="github-fetch-btn" class="px-6 py-3 bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-bold rounded-xl text-sm transition-all shadow-lg shadow-cyan-500/20 flex items-center justify-center space-x-2">
+                        <i class="fas fa-sync-alt id='sync-icon'"></i>
+                        <span>Fetch Profile</span>
+                    </button>
+                </form>
+                <div class="flex items-center justify-between mt-3 text-[11px] text-slate-400 px-1">
+                    <span>Try preset usernames:</span>
+                    <div class="space-x-2 font-mono">
+                        <button onclick="quickFetch('kervieamado')" class="hover:text-cyan-400 underline">kervieamado</button>
+                        <span>&bull;</span>
+                        <button onclick="quickFetch('octocat')" class="hover:text-cyan-400 underline">octocat</button>
+                        <span>&bull;</span>
+                        <button onclick="quickFetch('torvalds')" class="hover:text-cyan-400 underline">torvalds</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Summary Card -->
+            <div id="github-profile-card" class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800 mb-10 transition-all">
+                <div class="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
+                    <img id="gh-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80" 
+                         alt="GitHub Avatar" 
+                         class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl border-2 border-cyan-400/50 object-cover shadow-xl">
+                    
+                    <div class="flex-1 text-center md:text-left space-y-3">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                            <div>
+                                <h4 id="gh-name" class="text-2xl font-bold text-white">Kervie Amado</h4>
+                                <a id="gh-username-link" href="https://github me" target="_blank" class="text-cyan-400 font-mono text-sm hover:underline">@kervieamado</a>
+                            </div>
+                            <a id="gh-profile-url" href="#" target="_blank" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs text-slate-200 font-semibold inline-flex items-center justify-center space-x-2 self-center md:self-auto">
+                                <i class="fab fa-github"></i>
+                                <span>View GitHub Profile</span>
+                            </a>
+                        </div>
+
+                        <p id="gh-bio" class="text-slate-300 text-sm max-w-2xl">
+                            Student developer at ICCT Colleges. Passionate about web tech, JavaScript, and crafting slick UIs.
+                        </p>
+
+                        <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2 text-xs text-slate-400 font-mono">
+                            <div class="bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800">
+                                <span class="text-white font-bold" id="gh-repos-count">0</span> Repositories
+                            </div>
+                            <div class="bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800">
+                                <span class="text-white font-bold" id="gh-followers-count">0</span> Followers
+                            </div>
+                            <div class="bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800">
+                                <span class="text-white font-bold" id="gh-following-count">0</span> Following
+                            </div>
+                            <div class="bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800" id="gh-location-container">
+                                📍 <span class="text-slate-300" id="gh-location">Taytay, Rizal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GitHub Repositories Header & Search -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
+                <h4 class="text-xl font-bold text-white flex items-center space-x-2">
+                    <i class="fas fa-code-branch text-cyan-400"></i>
+                    <span>Public Repositories</span>
+                </h4>
+
+                <div class="relative w-full sm:w-64">
+                    <input type="text" id="repo-search-input" placeholder="Search repositories..." 
+                           class="w-full pl-9 pr-4 py-2 bg-slate-900/90 border border-slate-800 rounded-xl text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-400">
+                    <i class="fas fa-search absolute left-3 top-3 text-slate-500 text-xs"></i>
+                </div>
+            </div>
+
+            <!-- Dynamic Repos Grid Container -->
+            <div id="github-repos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Repos dynamically injected via JS -->
+            </div>
+        </section>
+
+        <!-- FEATURED PROJECTS SECTION -->
+        <section id="projects" class="scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-xs font-semibold text-cyan-400 uppercase tracking-widest mb-2 font-mono">// CURATED SHOWCASE</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-white">Featured Academic & Personal Projects</h3>
+                <p class="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto mt-2">
+                    Selected works developed during coursework at ICCT Colleges and independent learning.
+                </p>
+            </div>
+
+            <!-- Project Filter Buttons -->
+            <div class="flex justify-center items-center space-x-2 mb-8 overflow-x-auto pb-2">
+                <button onclick="filterProjects('all')" class="project-filter-btn active px-4 py-1.5 rounded-full text-xs font-semibold bg-cyan-500 text-slate-950 transition-all">All Projects</button>
+                <button onclick="filterProjects('web')" class="project-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold glass-card text-slate-300 hover:text-cyan-400 transition-all">Web Apps</button>
+                <button onclick="filterProjects('academic')" class="project-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold glass-card text-slate-300 hover:text-cyan-400 transition-all">ICCT Coursework</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="featured-projects-grid">
+                
+                <!-- Project Card 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-slate-800 glass-card-hover flex flex-col justify-between project-item" data-category="web">
+                    <div>
+                        <div class="relative h-48 bg-slate-900 overflow-hidden group">
+                            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80" 
+                                 alt="ICCT Student Portal UI" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-3">
+                                <button onclick="openProjectModal('ICCT Student Grade Portal', 'A modern responsive web dashboard for students to check academic performance, course schedules, and announcements.', ['HTML5', 'CSS3', 'JavaScript', 'LocalStorage'], 'https://github.com/kervieamado')" class="p-3 bg-cyan-500 text-slate-950 rounded-full hover:scale-110 transition-transform">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-[10px] font-mono text-cyan-400 px-2 py-0.5 rounded bg-cyan-500/10 border border-cyan-500/20">Web Application</span>
+                                <span class="text-xs text-slate-500">ICCT Project</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-white mb-2">ICCT Student Grade Portal</h4>
+                            <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                                Interactive dashboard concept allowing students to calculate GPA, view class schedules, and organize academic milestones.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 border-t border-slate-800/50 flex items-center justify-between">
+                        <div class="flex space-x-2 text-xs font-mono text-slate-400">
+                            <span>HTML</span> &bull; <span>JS</span> &bull; <span>Tailwind</span>
+                        </div>
+                        <a href="https://github.com/kervieamado" target="_blank" class="text-cyan-400 hover:text-cyan-300 text-xs font-semibold">Source &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-slate-800 glass-card-hover flex flex-col justify-between project-item" data-category="academic">
+                    <div>
+                        <div class="relative h-48 bg-slate-900 overflow-hidden group">
+                            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80" 
+                                 alt="Taytay Local Business Directory" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-3">
+                                <button onclick="openProjectModal('Taytay Rizal Trade & Tourism Portal', 'A web directory highlighting local garments, shops, and attractions in Taytay, Rizal with interactive filtering.', ['JavaScript', 'Tailwind CSS', 'JSON Data'], 'https://github.com/kervieamado')" class="p-3 bg-cyan-500 text-slate-950 rounded-full hover:scale-110 transition-transform">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-[10px] font-mono text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">Community Project</span>
+                                <span class="text-xs text-slate-500">Taytay, Rizal</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-white mb-2">Taytay Rizal Business Directory</h4>
+                            <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                                Web portal built to promote local garments industry and micro-entrepreneurs in Taytay, Rizal.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 border-t border-slate-800/50 flex items-center justify-between">
+                        <div class="flex space-x-2 text-xs font-mono text-slate-400">
+                            <span>JS</span> &bull; <span>JSON</span> &bull; <span>Tailwind</span>
+                        </div>
+                        <a href="https://github.com/kervieamado" target="_blank" class="text-cyan-400 hover:text-cyan-300 text-xs font-semibold">Source &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-slate-800 glass-card-hover flex flex-col justify-between project-item" data-category="web">
+                    <div>
+                        <div class="relative h-48 bg-slate-900 overflow-hidden group">
+                            <img src="https://images.unsplash.com/photo-1618401471353-b98aedd04e11?w=600&auto=format&fit=crop&q=80" 
+                                 alt="Dev Task Manager" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-3">
+                                <button onclick="openProjectModal('Task & Code Snippet Tracker', 'Productivity web app built for developers to organize project tasks, save code snippets, and monitor daily progress.', ['React Basics', 'Node.js', 'Express'], 'https://github.com/kervieamado')" class="p-3 bg-cyan-500 text-slate-950 rounded-full hover:scale-110 transition-transform">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-[10px] font-mono text-indigo-400 px-2 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/20">Productivity Tool</span>
+                                <span class="text-xs text-slate-500">Personal Project</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-white mb-2">Dev Snippet & Task Tracker</h4>
+                            <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                                Full-featured web interface to manage programming tasks, code snippets, and daily study logs.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 border-t border-slate-800/50 flex items-center justify-between">
+                        <div class="flex space-x-2 text-xs font-mono text-slate-400">
+                            <span>React</span> &bull; <span>Node</span> &bull; <span>CSS</span>
+                        </div>
+                        <a href="https://github.com/kervieamado" target="_blank" class="text-cyan-400 hover:text-cyan-300 text-xs font-semibold">Source &rarr;</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-xs font-semibold text-cyan-400 uppercase tracking-widest mb-2 font-mono">// GET IN TOUCH</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-white">Let's Connect & Build Together</h3>
+                <p class="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto mt-2">
+                    Have a project idea, academic inquiry, or internship opportunity? Drop Kervie a message!
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Direct Info Column -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4">
+                        <h4 class="text-lg font-bold text-white mb-4">Contact Information</h4>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center shrink-0">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 uppercase block font-semibold">Email Address</span>
+                                <a href="mailto:kervie.amado@icct.edu.ph" class="text-sm font-medium text-slate-200 hover:text-cyan-400 transition-colors">kervie.amado@student.icct.edu.ph</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 uppercase block font-semibold">Location</span>
+                                <span class="text-sm font-medium text-slate-200">Taytay, Rizal, Philippines</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 flex items-center justify-center shrink-0">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 uppercase block font-semibold">Institution</span>
+                                <span class="text-sm font-medium text-slate-200">ICCT Colleges</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Networks Bar -->
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                        <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Connect on Social Platforms</h4>
+                        <div class="flex items-center space-x-3">
+                            <a href="https://github.com/kervieamado" target="_blank" class="w-11 h-11 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-cyan-500 hover:bg-cyan-500/10 flex items-center justify-center text-lg transition-all">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://linkedin.com" target="_blank" class="w-11 h-11 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-blue-400 hover:border-blue-500 hover:bg-blue-500/10 flex items-center justify-center text-lg transition-all">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://facebook.com" target="_blank" class="w-11 h-11 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-blue-500 hover:border-blue-500 hover:bg-blue-500/10 flex items-center justify-center text-lg transition-all">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Column -->
+                <div class="lg:col-span-7">
+                    <form id="contact-form" class="glass-card p-8 rounded-3xl border border-slate-800 space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Your Name</label>
+                                <input type="text" required placeholder="e.g. Juan Dela Cruz" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Your Email</label>
+                                <input type="email" required placeholder="juan@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Subject</label>
+                            <input type="text" required placeholder="Project Collaboration / Academic Inquiry" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Message</label>
+                            <textarea rows="4" required placeholder="Type your message here..." class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 transition-colors resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-bold rounded-xl text-sm transition-all shadow-lg shadow-cyan-500/20 flex items-center justify-center space-x-2">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Send Message</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800/80 bg-slate-950 py-8 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 text-center sm:flex sm:justify-between sm:items-center text-xs text-slate-400 space-y-4 sm:space-y-0">
+            <div>
+                <p>&copy; 2026 <span class="text-slate-200 font-semibold">Kervie Amado</span>. Designed & Built in Taytay, Rizal.</p>
+                <p class="text-[11px] text-slate-400 mt-0.5">Student at ICCT Colleges &bull; Crafted with HTML, Tailwind CSS & JavaScript</p>
+            </div>
+            <div class="flex justify-center space-x-4">
+                <a href="#home" class="hover:text-cyan-400 transition-colors">Back to Top &uarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Modal Dialog -->
+    <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300 p-4">
+        <div class="glass-card max-w-lg w-full p-6 rounded-3xl border border-slate-700 space-y-4 relative transform scale-95 transition-transform duration-300" id="modal-content">
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+            
+            <h3 id="modal-title" class="text-xl font-bold text-white">Project Details</h3>
+            <p id="modal-desc" class="text-slate-300 text-sm leading-relaxed">Description goes here...</p>
+            
+            <div>
+                <span class="text-xs font-semibold text-slate-400 uppercase block mb-2">Technologies Used</span>
+                <div id="modal-tags" class="flex flex-wrap gap-2"></div>
+            </div>
+
+            <div class="pt-4 flex justify-end space-x-3">
+                <a id="modal-link" href="#" target="_blank" class="px-5 py-2.5 bg-cyan-500 text-slate-950 font-bold rounded-xl text-xs hover:bg-cyan-400 transition-colors">
+                    Visit GitHub Repository
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Typing Animation Effect
+        const typingRoles = [
+            "Student @ ICCT Colleges",
+            "Aspiring Software Developer",
+            "Frontend & Tech Enthusiast",
+            "Based in Taytay, Rizal"
+        ];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typedTextElement = document.getElementById("typed-text");
+
+        function typeEffect() {
+            const currentRole = typingRoles[roleIndex];
+            
+            if (isDeleting) {
+                typedTextElement.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedTextElement.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 40 : 80;
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                typeSpeed = 2000; // Pause at end
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % typingRoles.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeEffect, typeSpeed);
+        }
+
+        // Theme Accent Switcher
+        function setTheme(theme) {
+            document.body.classList.remove('theme-emerald', 'theme-violet', 'theme-amber');
+            if (theme !== 'cyan') {
+                document.body.classList.add(`theme-${theme}`);
+            }
+            showToast(`Accent theme changed to ${theme.toUpperCase()}`, 'fa-palette');
+        }
+
+        // Toast Helper
+        function showToast(message, icon = 'fa-info-circle') {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMsg.textContent = message;
+            toastIcon.className = `fas ${icon} text-cyan-400 text-lg`;
+
+            toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-20');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-20');
+            }, 3000);
+        }
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // GitHub API Dynamic Integration
+        let currentFetchedRepos = [];
+
+        async function fetchGitHubData(username) {
+            const fetchBtn = document.getElementById('github-fetch-btn');
+            fetchBtn.disabled = true;
+            fetchBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> <span>Fetching...</span>`;
+
+            try {
+                // Fetch Profile User Data
+                const userRes = await fetch(`https://api.github.com/users/${username}`);
+                
+                if (!userRes.ok) {
+                    throw new Error('User not found or API rate limit reached');
+                }
+
+                const userData = await userRes.json();
+
+                // Update Profile Card DOM
+                document.getElementById('gh-avatar').src = userData.avatar_url || 'https://placehold.co/300x300/0f172a/22d3ee?text=KA';
+                document.getElementById('gh-name').textContent = userData.name || username;
+                document.getElementById('gh-username-link').textContent = `@${userData.login}`;
+                document.getElementById('gh-username-link').href = userData.html_url;
+                document.getElementById('gh-profile-url').href = userData.html_url;
+                document.getElementById('gh-bio').textContent = userData.bio || "Student Developer at ICCT Colleges passionate about building modern web applications.";
+                document.getElementById('gh-repos-count').textContent = userData.public_repos || 0;
+                document.getElementById('gh-followers-count').textContent = userData.followers || 0;
+                document.getElementById('gh-following-count').textContent = userData.following || 0;
+                document.getElementById('gh-location').textContent = userData.location || "Taytay, Rizal, PH";
+                
+                // Update Hero Stats
+                document.getElementById('stat-repos-count').textContent = `${userData.public_repos || 12}+`;
+
+                // Fetch Public Repositories
+                const repoRes = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=9`);
+                if (repoRes.ok) {
+                    const repos = await repoRes.json();
+                    currentFetchedRepos = repos;
+                    renderRepos(repos);
+                }
+
+                showToast(`Loaded GitHub data for ${username}!`, 'fa-check-circle');
+
+            } catch (error) {
+                console.warn('GitHub API Fallback trigger:', error);
+                showToast('Using demo fallback data for GitHub profile', 'fa-exclamation-triangle');
+                renderFallbackData(username);
+            } finally {
+                fetchBtn.disabled = false;
+                fetchBtn.innerHTML = `<i class="fas fa-sync-alt"></i> <span>Fetch Profile</span>`;
+            }
+        }
+
+        // Render Repositories Grid
+        function renderRepos(repos) {
+            const grid = document.getElementById('github-repos-grid');
+            grid.innerHTML = '';
+
+            if (repos.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-10 text-slate-500">No public repositories found for this account.</div>`;
+                return;
+            }
+
+            repos.forEach(repo => {
+                const langColor = getLangColor(repo.language);
+                const card = document.createElement('div');
+                card.className = "glass-card p-6 rounded-2xl border border-slate-800 glass-card-hover flex flex-col justify-between";
+                
+                card.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-cyan-400 font-semibold">
+                                <i class="fas fa-book-bookmark me-1 text-[10px]"></i> Public
+                            </span>
+                            <div class="flex items-center space-x-3 text-xs text-slate-400 font-mono">
+                                <span><i class="far fa-star text-amber-400 me-1"></i>${repo.stargazers_count || 0}</span>
+                                <span><i class="fas fa-code-branch text-cyan-400 me-1"></i>${repo.forks_count || 0}</span>
+                            </div>
+                        </div>
+
+                        <h5 class="text-base font-bold text-white hover:text-cyan-400 transition-colors">
+                            <a href="${repo.html_url}" target="_blank">${repo.name}</a>
+                        </h5>
+
+                        <p class="text-slate-400 text-xs leading-relaxed line-clamp-2">
+                            ${repo.description || 'No description provided for this repository.'}
+                        </p>
+                    </div>
+
+                    <div class="pt-4 mt-4 border-t border-slate-800/60 flex items-center justify-between text-xs">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-2.5 h-2.5 rounded-full ${langColor}"></span>
+                            <span class="text-slate-300 font-mono text-[11px]">${repo.language || 'Code'}</span>
+                        </div>
+                        <a href="${repo.html_url}" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-semibold flex items-center space-x-1">
+                            <span>View</span>
+                            <i class="fas fa-external-link-alt text-[10px]"></i>
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Demo Fallback Data Generator
+        function renderFallbackData(username) {
+            document.getElementById('gh-avatar').src = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80";
+            document.getElementById('gh-name').textContent = username === 'kervieamado' ? "Kervie Amado" : username;
+            document.getElementById('gh-username-link').textContent = `@${username}`;
+            document.getElementById('gh-username-link').href = `https://github.com/${username}`;
+            document.getElementById('gh-profile-url').href = `https://github.com/${username}`;
+            document.getElementById('gh-bio').textContent = "Student developer at ICCT Colleges building web apps and honing software engineering skills in Taytay, Rizal.";
+            document.getElementById('gh-repos-count').textContent = "14";
+            document.getElementById('gh-followers-count').textContent = "28";
+            document.getElementById('gh-following-count').textContent = "19";
+
+            const demoRepos = [
+                {
+                    name: "icct-student-portal",
+                    description: "Academic portal project built during web development course at ICCT Colleges.",
+                    stargazers_count: 5,
+                    forks_count: 2,
+                    language: "JavaScript",
+                    html_url: `https://github.com/${username}`
+                },
+                {
+                    name: "taytay-rizal-guide",
+                    description: "Directory and interactive showcase for local businesses in Taytay, Rizal.",
+                    stargazers_count: 8,
+                    forks_count: 3,
+                    language: "HTML",
+                    html_url: `https://github.com/${username}`
+                },
+                {
+                    name: "fullstack-task-app",
+                    description: "Developer utility for managing daily tasks and saving code snippets.",
+                    stargazers_count: 12,
+                    forks_count: 4,
+                    language: "TypeScript",
+                    html_url: `https://github.com/${username}`
+                }
+            ];
+
+            currentFetchedRepos = demoRepos;
+            renderRepos(demoRepos);
+        }
+
+        function getLangColor(lang) {
+            switch ((lang || '').toLowerCase()) {
+                case 'javascript': return 'bg-yellow-400';
+                case 'html': return 'bg-orange-500';
+                case 'css': return 'bg-blue-500';
+                case 'python': return 'bg-emerald-400';
+                case 'typescript': return 'bg-cyan-400';
+                case 'php': return 'bg-indigo-400';
+                default: return 'bg-cyan-500';
+            }
+        }
+
+        function quickFetch(uname) {
+            document.getElementById('github-username-input').value = uname;
+            fetchGitHubData(uname);
+        }
+
+        // Form Listeners
+        document.getElementById('github-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const uname = document.getElementById('github-username-input').value.trim();
+            if (uname) fetchGitHubData(uname);
+        });
+
+        // Search Filter for Repos
+        document.getElementById('repo-search-input').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = currentFetchedRepos.filter(r => 
+                r.name.toLowerCase().includes(query) || 
+                (r.description && r.description.toLowerCase().includes(query))
+            );
+            renderRepos(filtered);
+        });
+
+        // Project Filters
+        function filterProjects(category) {
+            const items = document.querySelectorAll('.project-item');
+            const btns = document.querySelectorAll('.project-filter-btn');
+
+            btns.forEach(btn => {
+                btn.classList.remove('bg-cyan-500', 'text-slate-950');
+                btn.classList.add('glass-card', 'text-slate-300');
+            });
+
+            event.target.classList.remove('glass-card', 'text-slate-300');
+            event.target.classList.add('bg-cyan-500', 'text-slate-950');
+
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Project Modal Handling
+        function openProjectModal(title, desc, tags, link) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-desc').textContent = desc;
+            document.getElementById('modal-link').href = link;
+
+            const tagsContainer = document.getElementById('modal-tags');
+            tagsContainer.innerHTML = '';
+            tags.forEach(t => {
+                const tagSpan = document.createElement('span');
+                tagSpan.className = 'px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-400';
+                tagSpan.textContent = t;
+                tagsContainer.appendChild(tagSpan);
+            });
+
+            const modal = document.getElementById('project-modal');
+            const content = document.getElementById('modal-content');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            content.classList.remove('scale-95');
+            content.classList.add('scale-100');
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('project-modal');
+            const content = document.getElementById('modal-content');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+        }
+
+        // Contact Form Handling
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showToast('Thank you! Your message has been sent to Kervie Amado.', 'fa-paper-plane');
+            e.target.reset();
+        });
+
+        // On Page Load Initialization
+        window.addEventListener('DOMContentLoaded', () => {
+            typeEffect();
+            fetchGitHubData('kervieamado');
+        });
+    </script>
+</body>
+</html>
