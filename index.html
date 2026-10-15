@@ -1144,10 +1144,12 @@
         
         // Contact Form Handling
         document.getElementById('contact-form').addEventListener('submit', (e) => {
-            e.preventDefault();
+            
             showToast('Thank you! Your message has been sent to Kervie Amado.', 'fa-paper-plane');
             e.target.reset();
         });
+
+        // e.preventDefault();
 
         // On Page Load Initialization
         window.addEventListener('DOMContentLoaded', () => {
