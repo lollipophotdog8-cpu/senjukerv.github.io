@@ -1009,39 +1009,39 @@
 
         // Demo Fallback Data Generator
         function renderFallbackData(username) {
-            document.getElementById('gh-avatar').src = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80";
-            document.getElementById('gh-name').textContent = username === 'kervieamado' ? "Kervie Amado" : username;
+            document.getElementById('gh-avatar').src = "https://avatars.githubusercontent.com/u/332872819?v=4";
+            document.getElementById('gh-name').textContent = username === 'senjukerv' ? "senjukerv" : username;
             document.getElementById('gh-username-link').textContent = `@${username}`;
             document.getElementById('gh-username-link').href = `https://github.com/${username}`;
             document.getElementById('gh-profile-url').href = `https://github.com/${username}`;
-            document.getElementById('gh-bio').textContent = "Student developer at ICCT Colleges building web apps and honing software engineering skills in Taytay, Rizal.";
-            document.getElementById('gh-repos-count').textContent = "14";
-            document.getElementById('gh-followers-count').textContent = "28";
-            document.getElementById('gh-following-count').textContent = "19";
+            document.getElementById('gh-bio').textContent = "Student at ICCT Colleges learning web apps and honing software engineering skills lives in Taytay, Rizal.";
+            document.getElementById('gh-repos-count').textContent = "4";
+            document.getElementById('gh-followers-count').textContent = "0";
+            document.getElementById('gh-following-count').textContent = "0";
 
             const demoRepos = [
                 {
-                    name: "icct-student-portal",
-                    description: "Academic portal project built during web development course at ICCT Colleges.",
-                    stargazers_count: 5,
-                    forks_count: 2,
-                    language: "JavaScript",
+                    name: "practice-portfolio",
+                    description: "Practice Portfolio only",
+                    stargazers_count: 0,
+                    forks_count: 0,
+                    language: "None",
                     html_url: `https://github.com/${username}`
                 },
                 {
-                    name: "taytay-rizal-guide",
-                    description: "Directory and interactive showcase for local businesses in Taytay, Rizal.",
-                    stargazers_count: 8,
-                    forks_count: 3,
+                    name: "senjukerv.github.io",
+                    description: "Portfolio",
+                    stargazers_count: 0,
+                    forks_count: 0,
                     language: "HTML",
                     html_url: `https://github.com/${username}`
                 },
                 {
-                    name: "fullstack-task-app",
-                    description: "Developer utility for managing daily tasks and saving code snippets.",
-                    stargazers_count: 12,
-                    forks_count: 4,
-                    language: "TypeScript",
+                    name: "AgriFish",
+                    description: "AgriFish is a webpage school project that connects Agricultural farmers to a online market/inventory type of website so that farmers can sell their crops fast and fresh. Note this web is only a school related project and this website doesn't exist yet.",
+                    stargazers_count: 0,
+                    forks_count: 0,
+                    language: "CSS",
                     html_url: `https://github.com/${username}`
                 }
             ];
